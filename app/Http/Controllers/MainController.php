@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 class MainController extends Controller
 {
     public function index()
-    {
-        return view('main.index');
-    }
+{
+    $jsonPath = public_path('articles.json');
+    $json = file_get_contents($jsonPath);
+    $articles = json_decode($json, true);
+
+    return view('main.index', ['articles' => $articles]);
+}
 
     public function about()
     {

@@ -85,3 +85,37 @@ p {
 .site-footer p {
     margin: 3px 0;
 }
+
+/* Новости */
+
+.news-item {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.news-item .preview {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.news-item h2 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.news-item .date {
+    color: #777;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+/* Галерея */
+.full-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
