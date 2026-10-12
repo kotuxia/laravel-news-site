@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -14,43 +16,54 @@ class AuthController extends Controller
 
     public function registration(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $validated = $request->validate([
             'name'     => 'required|string|min:2|max:50',
-            'email'    => 'required|email',
+            'email'    => 'required|email|unique:users,email',
             'password' => 'required|string|min:6',
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->route('signin')
-                ->withErrors($validator)
-                ->withInput();
+        User::create([
+            'name'     => $validated['name'],
+            'email'    => $validated['email'],
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        return redirect()->route('login')
+            ->with('success', 'Регистрация прошла успешно! Войдите в систему.');
+    }
+
+    public function showLogin()
+    {
+        return view('auth.login');
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email'    => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->route('index')
+                ->with('success', 'Вы вошли в систему!');
         }
 
-        $data = [
-            'name'     => $request->input('name'),
-            'email'    => $request->input('email'),
-            'password' => $request->input('password'),
-        ];
+        return back()
+            ->withErrors(['email' => 'Неверный email или пароль.'])
+            ->withInput();
+    }
 
-        $jsonPath = public_path('users.json');
-        $users = [];
+    public function logout(Request $request)
+    {
+        Auth::logout();
 
-        if (file_exists($jsonPath)) {
-            $existing = file_get_contents($jsonPath);
-            $decoded = json_decode($existing, true);
-            if (is_array($decoded)) {
-                $users = $decoded;
-            }
-        }
-
-        $users[] = $data;
-
-        file_put_contents(
-            $jsonPath,
-            json_encode($users, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
-        );
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         return redirect()->route('index')
-            ->with('success', 'Регистрация прошла успешно!');
+            ->with('success', 'Вы вышли из системы.');
     }
 }

@@ -5,10 +5,6 @@
 @section('content')
     <h1>Регистрация</h1>
 
-    @if(session('success'))
-        <p class="success">{{ session('success') }}</p>
-    @endif
-
     @if($errors->any())
         <ul class="errors">
             @foreach($errors->all() as $error)
@@ -36,5 +32,6 @@
         </div>
 
         <button type="submit">Зарегистрироваться</button>
+        <a href="{{ route('login') }}" class="btn-cancel">Войти</a>
     </form>
 @endsection
