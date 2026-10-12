@@ -6,7 +6,7 @@ class MainController extends Controller
 {
 public function index()
 {
-    $articles = \App\Models\Article::orderBy('date', 'desc')->get();
+    $articles = \App\Models\Article::orderBy('date', 'desc')->paginate(5);
     return view('main.index', ['articles' => $articles]);
 }
     public function about()

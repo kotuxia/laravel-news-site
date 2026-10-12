@@ -121,11 +121,131 @@ p {
 }
 
 /* Форма авторизации */
-.auth-form { max-width: 400px; margin-top: 20px; }
-.form-group { margin-bottom: 15px; }
-.form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
-.form-group input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
-.auth-form button { padding: 10px 20px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
-.auth-form button:hover { background: #555; }
-.errors { color: #c00; margin-bottom: 15px; padding-left: 20px; }
-.success { color: #080; margin-bottom: 15px; padding: 10px; background: #e6ffe6; border-left: 4px solid #080; }
+.auth-form {
+    max-width: 400px;
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.auth-form button {
+    padding: 10px 20px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.auth-form button:hover {
+    background: #555;
+}
+
+.errors {
+    color: #c00;
+    margin-bottom: 15px;
+    padding-left: 20px;
+}
+
+.success {
+    color: #080;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #e6ffe6;
+    border-left: 4px solid #080;
+}
+
+/* Пагинация */
+
+.pagination {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.pagination nav {
+    display: inline-block;
+}
+
+.pagination svg {
+    width: 20px;
+    height: 20px;
+}
+
+.pagination a,
+.pagination span {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 0 3px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333;
+    text-decoration: none;
+}
+
+.pagination a:hover {
+    background: #f0f0f0;
+}
+
+.pagination .active span {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+.btn-create {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.btn-create:hover { background: #555; }
+
+.article-actions {
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+.article-actions a {
+    color: #333;
+    text-decoration: underline;
+}
+
+.btn-delete {
+    background: none;
+    border: none;
+    color: #c00;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: inherit;
+    font-family: inherit;
+    padding: 0;
+}
+
+.btn-cancel {
+    display: inline-block;
+    padding: 8px 16px;
+    color: #333;
+    text-decoration: none;
+    margin-left: 10px;
+}
