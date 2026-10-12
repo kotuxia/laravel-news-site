@@ -7,18 +7,18 @@
 
     @forelse($articles as $article)
         <article class="news-item">
-            <a href="{{ route('gallery', ['file' => $article['full_image']]) }}">
-                <img src="{{ asset($article['preview_image']) }}"
-                     alt="{{ $article['name'] }}"
+            <a href="{{ route('gallery', ['file' => $article->full_image]) }}">
+                <img src="{{ asset($article->preview_image) }}"
+                     alt="{{ $article->name }}"
                      class="preview">
             </a>
 
-            <h2>{{ $article['name'] }}</h2>
-            <p class="date">{{ $article['date'] }}</p>
+            <h2>{{ $article->name }}</h2>
+            <p class="date">{{ $article->date->format('d.m.Y') }}</p>
 
-            <p>{{ $article['shortDesc'] ?? \Illuminate\Support\Str::limit($article['desc'], 150) }}</p>
+            <p>{{ $article->short_description ?? \Illuminate\Support\Str::limit($article->content, 150) }}</p>
 
-            <a href="{{ route('gallery', ['file' => $article['full_image']]) }}">
+            <a href="{{ route('gallery', ['file' => $article->full_image]) }}">
                 Подробнее →
             </a>
         </article>

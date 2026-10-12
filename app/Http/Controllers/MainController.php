@@ -4,15 +4,11 @@ namespace App\Http\Controllers;
 
 class MainController extends Controller
 {
-    public function index()
+public function index()
 {
-    $jsonPath = public_path('articles.json');
-    $json = file_get_contents($jsonPath);
-    $articles = json_decode($json, true);
-
+    $articles = \App\Models\Article::orderBy('date', 'desc')->get();
     return view('main.index', ['articles' => $articles]);
 }
-
     public function about()
     {
         return view('main.about');
